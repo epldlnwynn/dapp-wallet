@@ -1,0 +1,50 @@
+{
+    "name": "dapp-wallet",
+    "version": "1.0.2",
+    "description": "这是一个 DAPP 钱包工具，主要是以钱包工具扩展，目前支持 MetaMask、CoinBase、Okx、TronLink、UniSat钱包工具，也可以根据自己需要进行扩展，已经为您准备好了最基础的代码，只要引用和自己的处理逻辑即可。",
+    "keywords": [
+        "钱包工具",
+        "钱包",
+        "Wallet",
+        "Dapp"
+    ],
+    "author": "epldlnwynn",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/epldlnwynn/dapp-wallet"
+    },
+    "homepage": "https://github.com/epldlnwynn/dapp-wallet/#readme",
+    "main": "index.js",
+    "files": [
+        "sdks/*.ts",
+        "*.ts",
+        "LICENSE",
+        "README.md"
+    ],
+    "license": "MIT",
+    "private": false,
+    "publishConfig": {
+        "access": "public"
+    },
+    "typings": "index.d.ts",
+    "scripts": {
+        "build": "tsdx build",
+        "release": "release-it"
+    },
+    "dependencies": {
+        "listen-events": "^1.0.1",
+        "web3": "^1.10.4"
+    },
+    "devDependencies": {
+        "@types/react": "^16.9.49",
+        "@types/react-dom": "^16.9.8",
+        "tsdx": "^0.14.1",
+        "tslib": "^2.0.1",
+        "typescript": "^4.0.5"
+    },
+    "peerDependencies": {
+        "react": "^16.13.1 || ^17",
+        "react-dom": "^16.13.1 || ^17"
+    }
+}
+

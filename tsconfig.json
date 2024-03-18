@@ -1,0 +1,23 @@
+{
+    "include": ["src", "typings"],
+    "compilerOptions": {
+        "module": "esnext",
+        "target": "ES6",
+        "lib": ["dom", "esnext"],
+        "sourceMap": true,
+        "rootDir": "./src",
+        "outDir": "./dist",
+        "strict": false,
+        "declaration": false,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "esModuleInterop": false,
+        "noFallthroughCasesInSwitch": true,
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": "./",
+        "paths": {
+            "*": ["src/*", "node_modules/*"]
+        }
+    }
+}
