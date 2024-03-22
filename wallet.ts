@@ -1,6 +1,8 @@
 import React, {createContext, useCallback, useContext, useEffect, useMemo, useState} from "react";
 import {EventBus} from "listen-events";
 import Web3 from "web3";
+//import {HttpProvider} from "web3-providers-http"
+//import {JsonRpcPayload, JsonRpcResponse} from "web3-core-helpers";
 import {PromiEvent, TransactionConfig, TransactionReceipt} from "web3-core";
 import {
     Account,
@@ -15,6 +17,9 @@ import {
     TypedMessage,
     WalletProviderProps
 } from "./typings";
+
+
+export * from "./typings"
 
 
 const PREFIX = location.host, LS = localStorage,
@@ -84,7 +89,10 @@ export const WalletProvider: React.FC<WalletProviderProps> = (props: WalletProvi
         if (!pro)
             return Promise.reject("Not matched to injected wallet plugin.")
 
-        console.log('WalletProvider.connect', pro?.name, walletName)
+        if (!pro.connect)
+            return Promise.reject(pro.name + "not yet implemented `connect`.")
+
+        console.log('WalletProvider.connect', pro.name, walletName)
 
         const account = await pro.connect()
         setLastUsed(pro.name)
@@ -263,8 +271,12 @@ export abstract class WalletPlugin extends EventBus implements IPlugin, IWallet 
         this._status = Status.noconnect;
         this._balance = "0"
 
+
+        this.connect = this.connect.bind(this)
+        this.disconnect = this.disconnect.bind(this)
         this._handleAccountsChanged = this._handleAccountsChanged.bind(this)
         this._handleChainChanged = this._handleChainChanged.bind(this)
+
 
         register(this)
     }
@@ -347,6 +359,7 @@ export abstract class WalletPlugin extends EventBus implements IPlugin, IWallet 
     transfer(_amount: any, _userAddress: string, _tokenAddress?: string, _unit?: string): Promise<any> {
         return Promise.resolve()
     }
+
 
 }
 

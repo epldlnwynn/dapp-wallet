@@ -93,6 +93,11 @@ declare namespace Wallet {
     }
 
     class WalletPlugin extends EventBus implements IPlugin, IWallet {
+        protected _provider: any;
+        protected _connected: boolean;
+        protected _status: Status;
+        protected _balance: string;
+        protected _assets?: Array<AssetInfo>
 
         constructor(name: string, plugin: string, pluginUrl: string, docsUrl?: string);
 
@@ -107,13 +112,18 @@ declare namespace Wallet {
         get isConnected(): boolean;
         get isUnlocked(): boolean;
         get network(): string;
+        set network(e)
         get account(): string;
+        set account(e);
         get balance(): string;
         get assets(): Array<AssetInfo>;
         get status(): Status;
+        set status(e)
 
 
-        incrVersion(delta?: number): number;
+        protected _handleAccountsChanged(accounts: Array<string>): void
+        protected _handleChainChanged(chain: any): void
+        protected incrVersion(delta?: number): number;
 
         installed(canInstall?: boolean): boolean;
         connect<T = any>(): Promise<T>;
